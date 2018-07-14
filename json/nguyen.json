@@ -1,0 +1,43 @@
+{
+    "name": "Ong Ngoai",
+    "bio":"Big Boss",
+    "image":"images/fictional/lord.png",
+    "children": [
+        {
+            "name": "Di Hai",
+            "source": "json/nguyen_hai.json"
+        },
+        {
+            "name": "Di Ba",
+            "source": "json/nguyen_ba.json"
+        },
+        {
+            "name": "Di Bon",
+            "source": "json/nguyen_bon.json"
+        },
+        {
+            "name": "Di Nam",
+            "source": "json/nguyen_nam.json"
+        },
+        {
+            "name": "Cao Sau",
+            "source": "json/nguyen_sau.json"
+        },
+        {
+            "name": "Di Bay",
+            "source": "json/nguyen_bay.json"
+        },
+        {
+            "name": "Di Tam",
+            "source": "json/nguyen_tam.json"
+        },
+        {
+            "name": "Di Chinh",
+            "source": "json/nguyen_chinh.json"
+        },
+        {
+            "name": "Di Huong",
+            "source": "json/nguyen_huong.json"
+        }
+    ]
+}
