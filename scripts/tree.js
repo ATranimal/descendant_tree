@@ -185,10 +185,16 @@ function drawTree(treeData) {
 
     // Toggle children on click.
     function click(d) {
-        if (d3.event.defaultPrevented) return; // click suppressed
-        d = toggleChildren(d);
-        update(d);
-        centerNode(d);
+        console.log(d);
+        editInfo(d);
+        // if (d3.event.defaultPrevented) return; // click suppressed
+        // d = toggleChildren(d);
+        // update(d);
+        // centerNode(d);
+    }
+
+    function editInfo(d) {
+        console.log("open edit box");
     }
 
     function update(source) {
