@@ -185,7 +185,6 @@ function drawTree(treeData) {
 
     // Toggle children on click.
     function click(d) {
-        console.log(d);
         editInfo(d);
         // if (d3.event.defaultPrevented) return; // click suppressed
         // d = toggleChildren(d);
@@ -194,7 +193,12 @@ function drawTree(treeData) {
     }
 
     function editInfo(d) {
-        console.log("open edit box");
+        console.log(d);
+        $("#editor").html(
+            "<b>Name:</b> " + "<input value='" + d.name + "' type='text' name='editname' />"  + "<br/>" +
+            "<b>Bio:</b> " + "<input value='" + (d.bio ? d.bio : "") + "' type='text' name='editbio' />" + "<br/>" +
+            "<input type='submit' value='Submit Changes'/>"
+        );
     }
 
     function update(source) {

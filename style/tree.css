@@ -2,9 +2,25 @@ body {
   margin: 0;
 }
 
+#editor {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 99;
+  padding: 25px;  
+  font-family: "Georgia";
+  font-size: 18px;
+  max-width: 850px;
+  line-height: 1.4;
+  text-align: center;
+  background:rgba(0,0,0,.8);
+  color: white;
+  box-sizing: border-box;
+}
+
 #bio {
   position: absolute;
-  top:0;
+  top: 0;
   left: 0;
   z-index: 99;
   padding: 25px;
