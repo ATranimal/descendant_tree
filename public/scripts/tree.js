@@ -1,4 +1,4 @@
-var jsonPath = "json/nguyen.json";
+var jsonPath = "json/test.json";
 
 var publicTree;
 var running = 1; // number of running asynchronous functions
@@ -20,6 +20,7 @@ function parseTree (tree, replace) {
   }
 }
 
+// TODO: Catch error
 d3.json(jsonPath, function(error, treeData) {
   publicTree = treeData;
   parseTree(publicTree);
@@ -195,10 +196,10 @@ function drawTree(treeData) {
     function editInfo(d) {
         console.log(d);
         $("#editor").html(
-            "<form action='edit.html/'>" +
-            "<b>Name:</b> " + "<input value='" + d.name + "' type='text' id='editname' />"  + "<br/>" +
-            "<b>Bio:</b> " + "<input value='" + (d.bio ? d.bio : "") + "' type='text' id='editbio' />" + "<br/>" +
-            "<input type='submit' id='editsubmit' value='Submit Changes'/>" +
+            "<form action='edit' method='post'>" +
+            "<b>Name:</b> " + "<input value='" + d.name + "' type='text' name='name' />"  + "<br/>" +
+            "<b>Bio:</b> " + "<input value='" + (d.bio ? d.bio : "") + "' type='text' name='bio' />" + "<br/>" +
+            "<input type='submit' value='Submit Changes'/>" +
             "</form>"
         );
     }
