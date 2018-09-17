@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+var multer = require('multer');
+var upload = multer();
 var fs = require('fs');
 var path = require('path');
 
@@ -25,10 +27,11 @@ router.post('/edit/', function(req, res, next) {
       if (err) return console.log(err);
     });
   }
-
+ 
   res.redirect('../');
 })
 
+/* add a child */
 router.post('/add/', function(req, res, next) {
   personId = req.body.id;
   var fileName = path.join(__dirname, '..', '/public/json/test.json');
@@ -40,12 +43,28 @@ router.post('/add/', function(req, res, next) {
   }
   file.maxid = file.maxid + 1;
   console.log(file.maxid);
-  element.children.push({"name":"New Person","id":file.maxid,"bio":"Fresh Face"});
+  element.children.push({"name":"New Person","id":file.maxid,"bio":"Fresh Face", "image": "images/"+file.maxid+".png"});
 
   fs.writeFile(fileName, JSON.stringify(file, null, 2), function (err) {
     if (err) return console.log(err);
   });
 
+  res.redirect('../');
+})
+
+/* Add an image */
+router.post('/image/', upload.single('image'), function(req, res, next) {
+  personId = req.body.id;
+
+  var filePath = path.join(__dirname, '..', '/public/images/');
+
+  fs.writeFile(path.join(filePath, personId + ".png"), req.file, function(err) {
+    if (err) {
+      return console.log(err);
+    }
+    console.log("File Saved");
+  })
+  
   res.redirect('../');
 })
 
