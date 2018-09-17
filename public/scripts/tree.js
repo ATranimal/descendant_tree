@@ -197,10 +197,15 @@ function drawTree(treeData) {
         console.log(d);
         $("#editor").html(
             "<form action='edit' method='post'>" +
+            "<input value='" + d.id +"' type='hidden' name='id' />" +
             "<b>Name:</b> " + "<input value='" + d.name + "' type='text' name='name' />"  + "<br/>" +
             "<b>Bio:</b> " + "<input value='" + (d.bio ? d.bio : "") + "' type='text' name='bio' />" + "<br/>" +
             "<input type='submit' value='Submit Changes'/>" +
-            "</form>"
+            "</form>" +
+            "<form action='add' method='post'>" +
+            "<input value='" + d.id +"' type='hidden' name='id' />" +
+            "<input type='submit' value='Add Child' />" +
+            "</form>" 
         );
     }
 

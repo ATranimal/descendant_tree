@@ -1,31 +1,37 @@
 {
-    "name": "Ong Ngoai",
-    "bio":"Big Boss",
-    "image":"images/lord.png",
-    "children": [
+  "maxid": 5,
+  "name": "Ong Ngoai",
+  "id": 1,
+  "bio": "Big Boss",
+  "image": "images/lord.png",
+  "children": [
+    {
+      "name": "Di Hai",
+      "id": 2,
+      "bio": "First Child",
+      "image": "images/placeholder-female.png",
+      "children": [
         {
-            "name": "Di Hai",    
-            "bio":"First Child",
-            "image":"images/placeholder-female.png",
-            "children": [
-                {
-                    "name": "Luyen",
-                    "bio": "had 3 kids",
-                    "image": "images/placeholder.png",
-                    "children": [
-                        {
-                            "name": "Danny",
-                            "bio": "Big D",
-                            "image": "images/placeholder.png"
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "name": "Di Ba",    
-            "bio":"Second Child",
-            "image":"images/placeholder-female.png"
+          "name": "Luyen",
+          "id": 4,
+          "bio": "had 3 kids",
+          "image": "images/placeholder.png",
+          "children": [
+            {
+              "name": "Danny",
+              "id": 5,
+              "bio": "2 Brothers",
+              "image": "images/placeholder.png"
+            }
+          ]
         }
-    ]
+      ]
+    },
+    {
+      "name": "Di Ba",
+      "id": 3,
+      "bio": "Second Child",
+      "image": "images/placeholder-female.png"
+    }
+  ]
 }
