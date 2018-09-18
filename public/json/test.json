@@ -1,37 +1,17 @@
 {
-  "maxid": 5,
+  "maxid": 7,
   "name": "Ong Ngoai",
   "id": 1,
-  "bio": "Big Boss",
+  "location": "Nha Trang",
+  "contact": "",
   "image": "images/1.png",
   "children": [
     {
-      "name": "Di Hai",
-      "id": 2,
-      "bio": "First Child",
-      "image": "images/2.png",
-      "children": [
-        {
-          "name": "Luyen",
-          "id": 4,
-          "bio": "had 3 kids",
-          "image": "images/4.png",
-          "children": [
-            {
-              "name": "Danny",
-              "id": 5,
-              "bio": "2 Brothers",
-              "image": "images/5.png"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "name": "Di Ba",
-      "id": 3,
-      "bio": "Second Child",
-      "image": "images/3.png"
+      "name": "Hai",
+      "id": 7,
+      "image": "images/7.png",
+      "location": "Toronto",
+      "contact": "416-403-2945"
     }
   ]
 }

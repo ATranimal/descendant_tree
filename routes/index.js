@@ -3,13 +3,15 @@ var router = express.Router();
 var multer = require('multer');
 var fs = require('fs');
 var path = require('path');
+var passport = require('passport');
+var ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn;
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { 
-    title: 'Nguyen Family Tree'
-  });
-});
+router.get('/admin/', ensureLoggedIn('/login'),
+  function(req, res){
+    res.render('index', { user: req.user });
+  }
+);
 
 /* edit JSON */
 router.post('/edit/', function(req, res, next) {
@@ -19,15 +21,19 @@ router.post('/edit/', function(req, res, next) {
     var file = require(fileName);
     var element = findNodeById(personId, file);
 
+    console.log(req.body.location);
+    console.log(req.body.contact);
+
     element.name = req.body.name;
-    element.bio = req.body.bio;
+    element.location = req.body.location;
+    element.contact = req.body.contact
 
     fs.writeFile(fileName, JSON.stringify(file, null, 2), function (err) {
       if (err) return console.log(err);
     });
   }
  
-  res.redirect('../');
+  res.redirect('../admin');
 })
 
 /* add a child */
@@ -42,13 +48,13 @@ router.post('/add/', function(req, res, next) {
   }
   file.maxid = file.maxid + 1;
   console.log(file.maxid);
-  element.children.push({"name":"New Person","id":file.maxid,"bio":"Fresh Face", "image": "images/"+file.maxid+".png"});
+  element.children.push({"name":"New Person","id":file.maxid,"location":"","contact":"", "image": "images/"+file.maxid+".png"});
 
   fs.writeFile(fileName, JSON.stringify(file, null, 2), function (err) {
     if (err) return console.log(err);
   });
 
-  res.redirect('../');
+  res.redirect('../admin');
 })
 
 
@@ -86,7 +92,7 @@ router.post('/image/', upload.single('image'), function(req, res, next) {
     });
 
   } else {
-    res.redirect('../');
+    res.redirect('../admin');
   }
 })
 
@@ -127,5 +133,20 @@ function DeleteNodeById(id, element) {
   }
 }
 
+// LOGIN STUFF
+router.get('/login',
+  function(req, res){
+    res.render('login');
+  });
+  
+router.post('/login', 
+  passport.authenticate('local', { successReturnToOrRedirect: '/', failureRedirect: '/login' }),
+  );
+  
+router.get('/logout',
+  function(req, res){
+    req.logout();
+    res.redirect('/');
+  });
 
 module.exports = router;

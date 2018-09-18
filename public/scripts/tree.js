@@ -1,4 +1,4 @@
-var jsonPath = "json/nguyen.json";
+var jsonPath = "json/test.json";
 
 var publicTree;
 var running = 1; // number of running asynchronous functions
@@ -199,7 +199,8 @@ function drawTree(treeData) {
             "<form action='edit' method='post'>" +
             "<input value='" + d.id +"' type='hidden' name='id' />" +
             "<b>Name:</b> " + "<input value='" + d.name + "' type='text' name='name' />"  + "<br/>" +
-            "<b>Bio:</b> " + "<input value='" + (d.bio ? d.bio : "") + "' type='text' name='bio' />" + "<br/>" +
+            "<b>Location:</b> " + "<input value='" + (d.location ? d.location : "") + "' type='text' name='location' />" + "<br/>" +
+            "<b>Contact:</b> " + "<input value='" + (d.contact ? d.contact : "") + "' type='text' name='contact' />" + "<br/>" +
             "<input type='submit' value='Submit Changes'/>" +
             "</form>" +
             "<form action='add' method='post'>" +
@@ -332,7 +333,7 @@ function drawTree(treeData) {
             return "images/placeholder.png";
         });
         node.select('image').attr("title", function(d) {
-          return "<strong>" + englishName(d) + "</strong>. " + (d.bio ? d.bio : "");
+          return "<strong>" + englishName(d) + "</strong></br> " + (d.location ? d.location : "") + "</br>" + (d.contact ? d.contact : "");
         });
 
         // Update the text to reflect whether node has children or not.
