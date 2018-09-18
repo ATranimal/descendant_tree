@@ -51,6 +51,23 @@ router.post('/add/', function(req, res, next) {
   res.redirect('../');
 })
 
+
+/* delete a child */
+router.post('/delete/', function(req, res, next) {
+  personId = req.body.id;
+  var fileName = path.join(__dirname, '..', '/public/json/test.json');
+  var file = require(fileName);
+  var element = DeleteNodeById(personId, file);
+
+
+  fs.writeFile(fileName, JSON.stringify(file, null, 2), function (err) {
+    if (err) return console.log(err);
+  });
+
+  res.redirect('../');
+})
+
+/* multer housekeeping */
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, path.join(__dirname, '..', '/public/images/'))
@@ -86,6 +103,25 @@ function findNodeById(id, element) {
       result = findNodeById(id, children[i]);
       if (result) {
         return result;
+      }
+    }
+  }
+}
+
+/* Helper Function to find Node by ID */
+function DeleteNodeById(id, element) {
+  if (element.id == id) {
+    return element;
+  }
+
+  var children = element.children;
+  if( children ) {   
+    for (var i = 0; i < children.length; i++) {
+      var result = null;
+      result = DeleteNodeById(id, children[i]);
+      if (result) {
+        children.splice(i, 1);
+        return;
       }
     }
   }

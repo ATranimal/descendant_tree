@@ -1,4 +1,4 @@
-var jsonPath = "json/test.json";
+var jsonPath = "json/nguyen.json";
 
 var publicTree;
 var running = 1; // number of running asynchronous functions
@@ -205,6 +205,10 @@ function drawTree(treeData) {
             "<form action='add' method='post'>" +
             "<input value='" + d.id +"' type='hidden' name='id' />" +
             "<input type='submit' value='Add Child' />" +
+            "</form>" +
+            "<form action='delete' method='post'>" +
+            "<input value='" + d.id +"' type='hidden' name='id' />" +
+            "<input type='submit' value='Delete Person' />" +
             "</form>" +
             "<form action='image' method='post' enctype='multipart/form-data'>" +
             "<input value='" + d.id +"' type='hidden' name='id' />" +
