@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 var multer = require('multer');
-var upload = multer();
 var fs = require('fs');
 var path = require('path');
 
@@ -52,20 +51,26 @@ router.post('/add/', function(req, res, next) {
   res.redirect('../');
 })
 
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, path.join(__dirname, '..', '/public/images/'))
+  },
+  filename: function (req, file, cb) {
+    cb(null, req.body.id + '.png')
+  }
+})
+var upload = multer({ storage: storage })
+
 /* Add an image */
 router.post('/image/', upload.single('image'), function(req, res, next) {
-  personId = req.body.id;
+  if (!req.file) {
+    return res.send({
+      success: false
+    });
 
-  var filePath = path.join(__dirname, '..', '/public/images/');
-
-  fs.writeFile(path.join(filePath, personId + ".png"), req.file, function(err) {
-    if (err) {
-      return console.log(err);
-    }
-    console.log("File Saved");
-  })
-  
-  res.redirect('../');
+  } else {
+    res.redirect('../');
+  }
 })
 
 /* Helper Function to find Node by ID */
