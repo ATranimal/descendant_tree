@@ -6,10 +6,18 @@ var path = require('path');
 var passport = require('passport');
 var ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn;
 
-/* GET home page. */
-router.get('/admin/', ensureLoggedIn('/login'),
+
+/* index page for regular people */
+router.get('/', function(req, res, next) {
+  res.render('index');
+})
+
+
+/* GET admin page. */
+router.get('/admin/', 
+  // ensureLoggedIn('/login'),
   function(req, res){
-    res.render('index', { user: req.user });
+    res.render('admin', { user: req.user });
   }
 );
 
@@ -17,7 +25,7 @@ router.get('/admin/', ensureLoggedIn('/login'),
 router.post('/edit/', function(req, res, next) {
   if(req.body) {
     personId = req.body.id;
-    var fileName = path.join(__dirname, '..', '/public/json/test.json');
+    var fileName = path.join(__dirname, '..', '/public/json/mom.json');
     var file = require(fileName);
     var element = findNodeById(personId, file);
 
@@ -39,7 +47,7 @@ router.post('/edit/', function(req, res, next) {
 /* add a child */
 router.post('/add/', function(req, res, next) {
   personId = req.body.id;
-  var fileName = path.join(__dirname, '..', '/public/json/test.json');
+  var fileName = path.join(__dirname, '..', '/public/json/mom.json');
   var file = require(fileName);
   var element = findNodeById(personId, file);
 
@@ -48,7 +56,7 @@ router.post('/add/', function(req, res, next) {
   }
   file.maxid = file.maxid + 1;
   console.log(file.maxid);
-  element.children.push({"name":"New Person","id":file.maxid,"location":"","contact":"", "image": "images/"+file.maxid+".png"});
+  element.children.push({"name":"New Person","id":file.maxid,"location":"","contact":"", "dob":"1900", "image": "images/"+file.maxid+".png"});
 
   fs.writeFile(fileName, JSON.stringify(file, null, 2), function (err) {
     if (err) return console.log(err);
@@ -61,7 +69,7 @@ router.post('/add/', function(req, res, next) {
 /* delete a child */
 router.post('/delete/', function(req, res, next) {
   personId = req.body.id;
-  var fileName = path.join(__dirname, '..', '/public/json/test.json');
+  var fileName = path.join(__dirname, '..', '/public/json/mom.json');
   var file = require(fileName);
   var element = DeleteNodeById(personId, file);
 

@@ -1,4 +1,4 @@
-var jsonPath = "json/test.json";
+var jsonPath = "json/mom.json";
 
 var publicTree;
 var running = 1; // number of running asynchronous functions
@@ -201,6 +201,7 @@ function drawTree(treeData) {
             "<b>Name:</b> " + "<input value='" + d.name + "' type='text' name='name' />"  + "<br/>" +
             "<b>Location:</b> " + "<input value='" + (d.location ? d.location : "") + "' type='text' name='location' />" + "<br/>" +
             "<b>Contact:</b> " + "<input value='" + (d.contact ? d.contact : "") + "' type='text' name='contact' />" + "<br/>" +
+            "<b>Date of Birth:</b> " + "<input value='" + (d.dob ? d.dob : "") + "' type='text' name='dob' />" + "<br/>" +
             "<input type='submit' value='Submit Changes'/>" +
             "</form>" +
             "<form action='add' method='post'>" +
@@ -333,7 +334,7 @@ function drawTree(treeData) {
             return "images/placeholder.png";
         });
         node.select('image').attr("title", function(d) {
-          return "<strong>" + englishName(d) + "</strong></br> " + (d.location ? d.location : "") + "</br>" + (d.contact ? d.contact : "");
+          return "<strong>" + englishName(d) + "</strong></br> " + (d.location ? d.location : "") + "</br>" + "</br>" + (d.dob ? d.dob : "") + (d.contact ? d.contact : "") ;
         });
 
         // Update the text to reflect whether node has children or not.
