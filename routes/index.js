@@ -35,6 +35,7 @@ router.post('/edit/', function(req, res, next) {
     element.name = req.body.name;
     element.location = req.body.location;
     element.contact = req.body.contact
+    element.dob = req.body.dob;
 
     fs.writeFile(fileName, JSON.stringify(file, null, 2), function (err) {
       if (err) return console.log(err);

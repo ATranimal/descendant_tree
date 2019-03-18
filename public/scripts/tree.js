@@ -334,7 +334,10 @@ function drawTree(treeData) {
             return "images/placeholder.png";
         });
         node.select('image').attr("title", function(d) {
-          return "<strong>" + englishName(d) + "</strong></br> " + (d.location ? d.location : "") + "</br>" + "</br>" + (d.dob ? d.dob : "") + (d.contact ? d.contact : "") ;
+          return "<strong>" + englishName(d) + "</strong></br> " +
+            (d.location ? d.location : "") +
+            "<p>" + (d.dob ? d.dob : "") + "</p>" +
+            "<p>" + (d.contact ? d.contact : "") + "</p>";
         });
 
         // Update the text to reflect whether node has children or not.
